@@ -1,0 +1,35 @@
+-- How many events end in purchases per traffic source
+SELECT 
+traffic_source,
+COUNT (event_type) AS traffic_source_ending_in_purchase
+FROM `bigquery-public-data.thelook_ecommerce.events`
+WHERE
+event_type = "purchase"
+GROUP BY traffic_source
+ORDER BY traffic_source_ending_in_purchase DESC
+
+-- to get an idea of each traffic source ending in cart
+SELECT 
+traffic_source,
+COUNT (event_type) AS traffic_source_ending_in_cart
+FROM `bigquery-public-data.thelook_ecommerce.events`
+WHERE
+event_type = "cart"
+GROUP BY traffic_source
+ORDER BY traffic_source_ending_in_cart DESC
+
+-- total number of events ending in purchase
+SELECT 
+COUNT (event_type) as total_events_ending_in_purchase
+FROM `bigquery-public-data.thelook_ecommerce.events`
+WHERE
+event_type = "purchase"
+GROUP BY event_type
+
+-- total number of events ending in cart
+SELECT 
+COUNT (event_type) as total_events_ending_in_cart
+FROM `bigquery-public-data.thelook_ecommerce.events`
+WHERE
+event_type = "cart"
+GROUP BY event_type
